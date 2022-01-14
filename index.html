@@ -19,12 +19,19 @@
     <!--The Intro-->
     <section class="screen screen--title">
         <h1 class="main_title">Tierio</h1>
-        <h2 class="main_subtitle">The Tier List Maker</h2>
+        <div class="main_subtitle_container">
+            <h2 class="main_subtitle">The Tier List Maker</h2>
+        </div><br><br>
         <div class="title_input">
-            <div class="title_number_container">
-                <span class="higher"></span>
-                <span class="lower"></span>
-                <div class="title_val"></div>
+            <div>
+                <div class="title_number_container_lable">
+                    <span class="labl">Number Of Tiers</span>
+                </div>
+                <div class="title_number_container">
+                    <span class="higher" onclick="higher()"><i class="fas fa-chevron-right"></i></span>
+                    <div id="title_val"></div>
+                    <span class="lower" onclick="lower()"><i class="fas fa-chevron-left"></i></span>
+                </div>
             </div>
             <button id="title_button">Continue</button>
         </div>
@@ -43,37 +50,37 @@
             <div class="second">
                 <div class="input-container">
                     <input type="text" required="" />
-                    <label>Highest Tier</label>
+                    <label>2nd Tier</label>
                 </div>
             </div>
             <div class="third">
                 <div class="input-container">
                     <input type="text" required="" />
-                    <label>Highest Tier</label>
+                    <label>3rd Tier</label>
                 </div>
             </div>
             <div class="fourth">
                 <div class="input-container">
                     <input type="text" required="" />
-                    <label>Highest Tier</label>
+                    <label>4th Tier</label>
                 </div>
             </div>
             <div class="fifth">
                 <div class="input-container">
                     <input type="text" required="" />
-                    <label>Highest Tier</label>
+                    <label>5th Tier</label>
                 </div>
             </div>
             <div class="sixth">
                 <div class="input-container">
                     <input type="text" required="" />
-                    <label>Highest Tier</label>
+                    <label>6th Tier</label>
                 </div>
             </div>
             <div class="seventh">
                 <div class="input-container">
                     <input type="text" required="" />
-                    <label>Highest Tier</label>
+                    <label>7th Tier</label>
                 </div>
             </div>
         </div>
@@ -94,6 +101,8 @@
         <div class="options"></div>
         <div class="image_dragbox"></div>
     </section>
+
+    <script src="index.js"></script>
 
 </body>
 
