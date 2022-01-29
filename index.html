@@ -33,7 +33,7 @@
                     <span class="lower" onclick="lower()"><i class="fas fa-chevron-left"></i></span>
                 </div>
             </div>
-            <button id="title_button" onclick="goToInfoPage()">Continue</button>
+            <button id="title_button" onclick="goToInfoPage(), changeNameInputNum()">Continue</button>
         </div>
     </section>
 
@@ -41,6 +41,11 @@
     <section class="screen screen--tier_info" id="page_two" onclick="backToNormalOne()">
         <div class="back">
             <i id="back_btn" onclick="goToTitlePage()" class="fas fa-arrow-left"
+                style="font-size: 2rem; color: aqua;"></i>
+        </div>
+
+        <div class="next">
+            <i id="next_btn" onclick="goToTierPage()" class="fas fa-arrow-right"
                 style="font-size: 2rem; color: aqua;"></i>
         </div>
 
@@ -91,19 +96,26 @@
         </div>
 
         <div class="image_dropbox">
-            <form action="/action_page.php">
+            <p id="warning-1" class="warning">Maximum Of Five Images For Testing Purposes</p>
+            <p id="warning-2" class="warning">Must Fill All Tier Names</p>
+            <p id="warning-3" class="warning">Must Have At Least One Photo</p>
+            <form style="box-sizing: border-box; height: 20%; margin-bottom: 2rem;">
                 <label for="img" class="btn">Select Image to upload</label>
                 <input type="file" style="display: none;" id="img" name="img" accept="image/*">
                 <label id="display_image" class="slc_img">The image to display</label>
                 <label for="subm" class="btn">Add Image</label>
-                <input type="submit" style="visibility: hidden;" id="subm" name="subm">
+                <input onclick="addImage()" type="button" style="visibility: hidden;" id="subm" name="subm">
             </form>
-            <div class="image_container"></div>
+            <div id="image_container" style="display: inline-block; height: 26rem;"></div>
         </div>
     </section>
 
     <!--Tier list-->
-    <section class="screen screen--Tier_list">
+    <section class="screen screen--Tier_list" id="page_three" onclick="backToNormalTwo()">
+        <div class="back">
+            <i id="back_btn" onclick="goToInfoPage2()" class="fas fa-arrow-left"
+                style="font-size: 2rem; color:rgb(30, 255, 0);"></i>
+        </div>
         <div class="tier_list"></div>
         <div class="options"></div>
         <div class="image_dragbox"></div>
