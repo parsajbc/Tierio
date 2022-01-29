@@ -22,7 +22,7 @@ body {
 }
 
 section {
-    padding: 7em 2em 4em 2em;
+    padding: 6em 2em 4em 0em;
     display: block;
 }
 
@@ -32,6 +32,8 @@ section {
 
 .screen--tier_info{
     visibility: hidden;
+    padding: 0ch;
+    margin-top: 8%;
 }
 
 .screen--Tier_list{
@@ -97,7 +99,7 @@ div + button{
 
 .title_number_container{
     position: relative;
-    text-align: ;
+    text-align: center;
     width: 80px;
     height: 50px;
     border: 2px solid rgba(245, 99, 2, 0.2);
@@ -142,6 +144,10 @@ div + button{
     opacity: 1;
 }
 
+.temp{
+    transition: 0s;
+}
+
 .title_number_container .lower{
     display: block;
     top: 23%;
@@ -160,6 +166,7 @@ div + button{
 }
 
 button{
+    top: 0;
     width: 80px;
     height: 50px;
     background-color: #f56302;
@@ -168,6 +175,112 @@ button{
     border-radius: 40px;
     cursor: pointer;
 }
+
+.tier_names{
+    text-align: left;
+    box-sizing: border-box;
+    padding-left: 2rem;
+    display: inline-grid;
+    padding-top: 3rem;
+    width: 25%;
+    height: 75%;
+    border-left: 2px solid rgba(86, 233, 223, 0.3);
+}
+
+.image_dropbox{
+    color: #66fcf1;
+    text-align: left;
+    box-sizing: border-box;
+    padding-left: 2rem;
+    display: inline-grid;
+    padding-top: 3rem;
+    margin-left: 7%;
+    width: 48%;
+    height: 75%;
+    border-left: 2px solid rgba(86, 233, 223, 0.3);
+    border-right: 2px solid rgba(86, 233, 223, 0.3);
+}
+
+.input-container input:focus ~ label,
+.input-container input:valid ~ label{
+	top:-12px;
+	font-size:12px;
+}
+
+.input-container{
+	position:relative;
+	margin-bottom:25px;
+}
+
+.input-container-label{
+	position:absolute;
+	top:0px;
+	left:0px;
+	font-size:16px;
+	color:#66fcf1;	
+    pointer-events: none;
+	transition: all 0.5s ease-in-out;
+}
+
+.input-container input{ 
+    border:0;
+    border-bottom:1px solid #555;  
+    background:transparent;
+    width:100%;
+    padding:8px 0 5px 0;
+    font-size:16px;
+    color:#66fcf1;
+}
+
+.input-container input:focus{ 
+    border:none;	
+    outline:none;
+    border-bottom:1px solid rgba(86, 233, 223, 0.7);	
+}
+
+.back{
+    text-align: center;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    box-sizing: border-box;
+    width: 5rem;
+    height: 5rem;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    cursor: pointer;
+}
+
+.noTrans{
+    transition-duration: 0s;
+    transition-delay: 0s;
+    transition: 0s;
+}
+
+.btn{
+    box-sizing: border-box;
+    padding: 0.6rem;
+    background-color: rgba(16, 231, 217, 0.7);
+    border-color: rgba(16, 231, 217, 0.7);
+    color: #fff;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.slc_img{
+    box-sizing: border-box;
+    padding: 0.6rem;
+    background-position:center;
+    color: rgba(16, 231, 217, 0);
+    border-radius: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+
+
+
+
 
 
 

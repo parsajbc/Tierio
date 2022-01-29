@@ -17,7 +17,7 @@
     <!-- <header></header> -->
 
     <!--The Intro-->
-    <section class="screen screen--title">
+    <section class="screen screen--title" id="page_one" onclick="backToNormalTwo()">
         <h1 class="main_title">Tierio</h1>
         <div class="main_subtitle_container">
             <h2 class="main_subtitle">The Tier List Maker</h2>
@@ -33,63 +33,70 @@
                     <span class="lower" onclick="lower()"><i class="fas fa-chevron-left"></i></span>
                 </div>
             </div>
-            <button id="title_button">Continue</button>
+            <button id="title_button" onclick="goToInfoPage()">Continue</button>
         </div>
     </section>
 
-    <!--Tier Naming-->
-    <section class="screen screen--tier_info">
+    <!--Tier Info-->
+    <section class="screen screen--tier_info" id="page_two" onclick="backToNormalOne()">
+        <div class="back">
+            <i id="back_btn" onclick="goToTitlePage()" class="fas fa-arrow-left"
+                style="font-size: 2rem; color: aqua;"></i>
+        </div>
+
         <div class="tier_names">
-            <h3>Tier Naming</h3>
+            <h3 style="color: #66fcf1; padding-bottom: 2rem; box-sizing: border-box;">Tier Naming</h3>
             <div class="first">
                 <div class="input-container">
                     <input type="text" required="" />
-                    <label>Highest Tier</label>
+                    <label class="input-container-label">1st Tier</label>
                 </div>
             </div>
             <div class="second">
                 <div class="input-container">
                     <input type="text" required="" />
-                    <label>2nd Tier</label>
+                    <label class="input-container-label">2nd Tier</label>
                 </div>
             </div>
             <div class="third">
                 <div class="input-container">
                     <input type="text" required="" />
-                    <label>3rd Tier</label>
+                    <label class="input-container-label">3rd Tier</label>
                 </div>
             </div>
             <div class="fourth">
                 <div class="input-container">
                     <input type="text" required="" />
-                    <label>4th Tier</label>
+                    <label class="input-container-label">4th Tier</label>
                 </div>
             </div>
             <div class="fifth">
                 <div class="input-container">
                     <input type="text" required="" />
-                    <label>5th Tier</label>
+                    <label class="input-container-label">5th Tier</label>
                 </div>
             </div>
             <div class="sixth">
                 <div class="input-container">
                     <input type="text" required="" />
-                    <label>6th Tier</label>
+                    <label class="input-container-label">6th Tier</label>
                 </div>
             </div>
             <div class="seventh">
                 <div class="input-container">
                     <input type="text" required="" />
-                    <label>7th Tier</label>
+                    <label class="input-container-label">7th Tier</label>
                 </div>
             </div>
         </div>
 
         <div class="image_dropbox">
             <form action="/action_page.php">
-                <label for="img">upload image:</label>
-                <input type="file" id="img" name="img" accept="image/*">
-                <input type="add">
+                <label for="img" class="btn">Select Image to upload</label>
+                <input type="file" style="display: none;" id="img" name="img" accept="image/*">
+                <label id="display_image" class="slc_img">The image to display</label>
+                <label for="subm" class="btn">Add Image</label>
+                <input type="submit" style="visibility: hidden;" id="subm" name="subm">
             </form>
             <div class="image_container"></div>
         </div>
