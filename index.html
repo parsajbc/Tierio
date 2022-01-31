@@ -16,6 +16,9 @@
     <!--The Header-->
     <!-- <header></header> -->
 
+    <!-- Just A Sensor -->
+    <div id="sensor"></div>
+
     <!--The Intro-->
     <section class="screen screen--title" id="page_one" onclick="backToNormalTwo()">
         <h1 class="main_title">Tierio</h1>
@@ -96,7 +99,7 @@
         </div>
 
         <div class="image_dropbox">
-            <p id="warning-1" class="warning">Maximum Of Five Images For Testing Purposes</p>
+            <p id="warning-1" class="warning">Maximum Of twenty Images For Testing Purposes</p>
             <p id="warning-2" class="warning">Must Fill All Tier Names</p>
             <p id="warning-3" class="warning">Must Have At Least One Photo</p>
             <form style="box-sizing: border-box; height: 20%; margin-bottom: 2rem;">
@@ -111,14 +114,16 @@
     </section>
 
     <!--Tier list-->
-    <section class="screen screen--Tier_list" id="page_three" onclick="backToNormalTwo()">
+    <section class="screen screen--Tier_list" id="page_three" onclick="backToNormalTwo()"
+        style="color: rgb(30, 255, 0);">
         <div class="back">
             <i id="back_btn" onclick="goToInfoPage2()" class="fas fa-arrow-left"
                 style="font-size: 2rem; color:rgb(30, 255, 0);"></i>
         </div>
-        <div class="tier_list"></div>
-        <div class="options"></div>
-        <div class="image_dragbox"></div>
+        <p style="opacity: 1; transition: 0s; top: 1.2rem; left: 5rem; width: 16rem;" class="message">Click to
+            select - click again to place behind of</p>
+        <div class="image_dragbox" id="image_dragbox"></div>
+        <div class="tier_list" id="tier_list"></div>
     </section>
 
     <script src="index.js"></script>

@@ -1,3 +1,5 @@
+var selected = null;
+
 var nums = document.getElementById('title_val');
 for (i = 2; i < 8; i++) {
     var span = document.createElement('span');
@@ -51,8 +53,21 @@ function goToInfoPage2() {
     var x = window.getComputedStyle(tier).visibility;
     var info = document.getElementById('page_two');
     if (x == 'visible') {
+        emptyTiers();
+        var t = document.getElementById("image_dragbox").getElementsByTagName('div');
+        while (t.length != 0) {
+            var div = document.createElement("div");
+            div.setAttribute("class", "added_image_deleter");
+            div.innerHTML = '<i class="fas fa-times"></i>';
+            div.setAttribute("onclick", "remove(this)");
+            t[0].setAttribute("class", "added_image");
+            t[0].appendChild(div);
+            document.getElementById("image_container").appendChild(t[0]);
+        }
+        removeTiers();
         tier.style.visibility = 'hidden';
         info.style.visibility = 'visible';
+        selected = null;
     }
 }
 
@@ -74,6 +89,35 @@ function goToTitlePage() {
         }
         info.style.visibility = 'hidden';
         intro.style.visibility = 'visible';
+    }
+}
+
+function makeTiers() {
+    var val = num[index].textContent;
+    for (i = 0; i < val; i++) {
+        var div = document.createElement("fieldset");
+        div.setAttribute("class", "tier");
+        var leg = document.createElement("legend");
+        leg.innerHTML = document.getElementsByClassName('input-container')[i].getElementsByTagName("input")[0].value;
+        div.appendChild(leg)
+        div.setAttribute("onclick", "moveToTierList(this)");
+        document.getElementById("tier_list").appendChild(div);
+    }
+}
+
+function removeTiers() {
+    var tiers = document.getElementById("tier_list");
+    while (tiers.children.length != 0) {
+        tiers.removeChild(tiers.children[0]);
+    }
+}
+
+function emptyTiers() {
+    var tier_list = document.getElementById("tier_list").children;
+    for (i = 0; i < tier_list.length; i++) {
+        while (tier_list[i].children.length - 1 != 0) {
+            document.getElementById("image_dragbox").appendChild(tier_list[i].children[0]);
+        }
     }
 }
 
@@ -105,6 +149,16 @@ function goToTierPage() {
         for (i = 0; i < col2.length; i++) {
             col2[i].style.transition = "0s";
         }
+        var t = document.getElementById("image_container").getElementsByTagName('div');
+        while (t.length != 0) {
+            t[0].removeChild(t[0].children[0]);
+            t[0].setAttribute("class", "image_option");
+            t[0].setAttribute("onclick", "select(this), moveBefore(this)")
+            t[0].setAttribute("onmouseover", "activeSensor()")
+            t[0].setAttribute("onmouseout", "deactiveSensor()")
+            document.getElementById("image_dragbox").appendChild(t[0]);
+        }
+        makeTiers();
         info.style.visibility = 'hidden';
         tier.style.visibility = 'visible';
     }
@@ -158,7 +212,7 @@ image_input.addEventListener('change', function () {
 });
 
 function addImage() {
-    if (uploaded_image != 0 && maxImages < 5) {
+    if (uploaded_image != 0 && maxImages < 20) {
         var div = document.createElement("div");
         var div2 = document.createElement("div");
         div2.setAttribute("class", "added_image_deleter");
@@ -168,12 +222,12 @@ function addImage() {
         div.setAttribute("class", "added_image");
         div.style.backgroundImage = `url(${uploaded_image})`;
         img_container.appendChild(div);
-        uploaded_image = "";
-        document.querySelector("#display_image").style.backgroundImage = ``;
+        // uploaded_image = "";
+        // document.querySelector("#display_image").style.backgroundImage = ``;
         maxImages += 1
         document.getElementById("warning-3").style.opacity = 0;
     }
-    if (maxImages == 5) {
+    if (maxImages == 20) {
         warning.style.opacity = 1;
         document.getElementById("warning-2").style.opacity = 0;
         document.getElementById("warning-3").style.opacity = 0;
@@ -187,5 +241,36 @@ function remove(el) {
     warning.style.opacity = 0;
 }
 
+function select(el) {
+    if (selected == null) {
+        selected = el;
+    }
+}
+
+function activeSensor() {
+    document.getElementById("sensor").style.height = '1px';
+}
+
+function deactiveSensor() {
+    document.getElementById("sensor").style.height = '0px';
+}
+
+
+function moveToTierList(el) {
+    if (document.getElementById("sensor").style.height == '0px' && selected != null) {
+        el.children[el.children.length - 1].insertAdjacentElement('beforebegin', selected);
+        selected = null;
+    }
+}
+
+function moveBefore(el) {
+    if (el == selected) {
+        return;
+    }
+    if (selected != null) {
+        el.insertAdjacentElement('beforebegin', selected);
+        selected = null;
+    }
+}
 
 
