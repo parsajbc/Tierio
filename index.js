@@ -97,6 +97,7 @@ function makeTiers() {
     for (i = 0; i < val; i++) {
         var div = document.createElement("fieldset");
         div.setAttribute("class", "tier");
+        div.style.backgroundColor = "rgba(30, 255, 0, " + ((1 - (1 / val) * i) / 2).toString(10) + ")";
         var leg = document.createElement("legend");
         leg.innerHTML = document.getElementsByClassName('input-container')[i].getElementsByTagName("input")[0].value;
         div.appendChild(leg)
@@ -154,8 +155,8 @@ function goToTierPage() {
             t[0].removeChild(t[0].children[0]);
             t[0].setAttribute("class", "image_option");
             t[0].setAttribute("onclick", "select(this), moveBefore(this)")
-            t[0].setAttribute("onmouseover", "activeSensor()")
-            t[0].setAttribute("onmouseout", "deactiveSensor()")
+            t[0].setAttribute("onmouseover", "activeSensor(this)")
+            t[0].setAttribute("onmouseout", "deactiveSensor(this)")
             document.getElementById("image_dragbox").appendChild(t[0]);
         }
         makeTiers();
@@ -193,6 +194,12 @@ function backToNormalTwo() {
     for (i = 0; i < col2.length; i++) {
         col2[i].style.transition = "0.3s";
     }
+    var captureElement = document.querySelector('#tier_list')
+    captureElement.style.backgroundColor = "rgba(255, 255, 255, 0.15)";
+    captureElement.style.border = "none";
+    captureElement.style.borderTop = "3px solid rgba(30, 255, 0, 0.7)";
+    captureElement.style.borderBottom = "4rem solid rgba(8, 11, 26, 1)";
+    captureElement.style.borderRadius = "0rem";
 }
 
 const image_input = document.querySelector("#img");
@@ -247,12 +254,16 @@ function select(el) {
     }
 }
 
-function activeSensor() {
+function activeSensor(el) {
     document.getElementById("sensor").style.height = '1px';
+    if (selected != null) {
+        el.style.borderLeft = "3px solid rgba(30, 255, 0, 1)";
+    }
 }
 
-function deactiveSensor() {
+function deactiveSensor(el) {
     document.getElementById("sensor").style.height = '0px';
+    el.style.borderLeft = "1px solid rgba(255, 255, 255, 1)";
 }
 
 
@@ -274,3 +285,30 @@ function moveBefore(el) {
 }
 
 
+// credit to https://jsfiddle.net/Ludolfyn/dzvb4q7y/
+function downloadTierList() {
+    if (document.querySelector('#image_dragbox').children.length != 0) {
+        return;
+    }
+
+    const captureElement = document.querySelector('#tier_list');
+    captureElement.style.backgroundColor = "#080b1a";
+    captureElement.style.border = "3px solid rgba(30, 255, 0, 1)";
+    captureElement.style.borderRadius = "1rem";
+
+    html2canvas(captureElement)
+        .then(canvas => {
+            canvas.style.display = 'none'
+            document.body.appendChild(canvas)
+            return canvas
+        })
+        .then(canvas => {
+            const image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
+            const a = document.createElement('a')
+            a.setAttribute('download', 'my-image.png')
+            a.setAttribute('href', image)
+            a.click()
+            canvas.remove()
+        })
+
+}

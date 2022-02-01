@@ -116,17 +116,22 @@
     <!--Tier list-->
     <section class="screen screen--Tier_list" id="page_three" onclick="backToNormalTwo()"
         style="color: rgb(30, 255, 0);">
+        <div class="down" onclick="downloadTierList()">
+            <i id="download_btn" class="fas fa-arrow-circle-down" style="font-size: 2rem; color:rgb(30, 255, 0);"></i>
+            <label class="tooltiptext">All Images Must Be Inserted Into The Tier List Before Downloading</label>
+        </div>
         <div class="back">
             <i id="back_btn" onclick="goToInfoPage2()" class="fas fa-arrow-left"
                 style="font-size: 2rem; color:rgb(30, 255, 0);"></i>
         </div>
-        <p style="opacity: 1; transition: 0s; top: 1.2rem; left: 5rem; width: 16rem;" class="message">Click to
-            select - click again to place behind of</p>
+        <p style="opacity: 1; transition: 0s; top: 5.5rem; left: 5.1rem; width: 16rem;" class="message">Click to
+            select - once selected, click on another image to place behind of or a tier to put at the end of</p>
         <div class="image_dragbox" id="image_dragbox"></div>
         <div class="tier_list" id="tier_list"></div>
     </section>
 
     <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
 
 </body>
 
