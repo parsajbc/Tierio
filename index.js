@@ -67,6 +67,9 @@ function goToInfoPage2() {
         removeTiers();
         tier.style.visibility = 'hidden';
         info.style.visibility = 'visible';
+        if (select != null) {
+            selected.style.border = "1px solid rgba(255, 255, 255, 1)";
+        }
         selected = null;
     }
 }
@@ -102,6 +105,8 @@ function makeTiers() {
         leg.innerHTML = document.getElementsByClassName('input-container')[i].getElementsByTagName("input")[0].value;
         div.appendChild(leg)
         div.setAttribute("onclick", "moveToTierList(this)");
+        div.setAttribute("onmouseover", "onMouseTier(this)");
+        div.setAttribute("onmouseout", "offMouseTier(this)");
         document.getElementById("tier_list").appendChild(div);
     }
 }
@@ -251,25 +256,38 @@ function remove(el) {
 function select(el) {
     if (selected == null) {
         selected = el;
+        el.style.border = "3px solid white";
     }
 }
 
 function activeSensor(el) {
     document.getElementById("sensor").style.height = '1px';
-    if (selected != null) {
-        el.style.borderLeft = "3px solid rgba(30, 255, 0, 1)";
+    if (selected != el) {
+        el.style.borderColor = "green";
     }
 }
 
 function deactiveSensor(el) {
     document.getElementById("sensor").style.height = '0px';
-    el.style.borderLeft = "1px solid rgba(255, 255, 255, 1)";
+    if (el != select) {
+        el.style.borderColor = "rgba(255, 255, 255, 1)";
+    }
+
 }
 
 
 function moveToTierList(el) {
     if (document.getElementById("sensor").style.height == '0px' && selected != null) {
         el.children[el.children.length - 1].insertAdjacentElement('beforebegin', selected);
+        selected.style.border = "1px solid rgba(255, 255, 255, 1)";
+        selected = null;
+    }
+}
+
+function moveToDragBox(el) {
+    if (document.getElementById("sensor").style.height == '0px' && selected != null) {
+        el.children[el.children.length - 1].insertAdjacentElement('beforebegin', selected);
+        selected.style.border = "1px solid rgba(255, 255, 255, 1)";
         selected = null;
     }
 }
@@ -280,6 +298,7 @@ function moveBefore(el) {
     }
     if (selected != null) {
         el.insertAdjacentElement('beforebegin', selected);
+        selected.style.border = "1px solid rgba(255, 255, 255, 1)";
         selected = null;
     }
 }
@@ -296,7 +315,7 @@ function downloadTierList() {
     captureElement.style.border = "3px solid rgba(30, 255, 0, 1)";
     captureElement.style.borderRadius = "1rem";
 
-    html2canvas(captureElement)
+    html2canvas(captureElement, { scale: 10 })
         .then(canvas => {
             canvas.style.display = 'none'
             document.body.appendChild(canvas)
@@ -311,4 +330,13 @@ function downloadTierList() {
             canvas.remove()
         })
 
+}
+
+
+function onMouseTier(el) {
+    el.style.border = "3px solid white";
+}
+
+function offMouseTier(el) {
+    el.style.border = "1px solid rgba(30, 255, 0, 0.7)";
 }
