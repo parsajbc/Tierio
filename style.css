@@ -32,12 +32,15 @@ section {
 
 .screen--title{
     visibility: visible;
+    background-image: linear-gradient(to right, rgba(245, 99, 2,0), rgba(245, 99, 2,0.8));
 }
 
 .screen--tier_info{
     visibility: hidden;
     padding: 0ch;
-    margin-top: 8%;
+    padding-top: 8%;
+    margin-top: 0px;
+    background-image: linear-gradient(to right, rgba(245, 99, 2,0), rgba(105, 252, 241,0.5));
 }
 
 .screen--Tier_list{
@@ -47,6 +50,7 @@ section {
     margin-top: 0px;
     min-height: 25%;
     position: absolute;
+    background-image: linear-gradient(to right, rgba(245, 99, 2,0), rgba(30, 255, 0,0.5));
 }
 
 h1, h2, h3 {
@@ -451,7 +455,7 @@ button{
     position:absolute;
     margin-top: 6em + 8%;
     border-top:3px solid rgba(30, 255, 0, 0.7);
-    border-bottom:4rem solid rgba(8, 11, 26, 1);
+    border-bottom:4rem solid transparent;
     left: 35%;
 }
 

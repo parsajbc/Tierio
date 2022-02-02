@@ -61,6 +61,7 @@ function goToInfoPage2() {
             div.innerHTML = '<i class="fas fa-times"></i>';
             div.setAttribute("onclick", "remove(this)");
             t[0].setAttribute("class", "added_image");
+            t[0].setAttribute("onclick", "");
             t[0].appendChild(div);
             document.getElementById("image_container").appendChild(t[0]);
         }
@@ -203,7 +204,7 @@ function backToNormalTwo() {
     captureElement.style.backgroundColor = "rgba(255, 255, 255, 0.15)";
     captureElement.style.border = "none";
     captureElement.style.borderTop = "3px solid rgba(30, 255, 0, 0.7)";
-    captureElement.style.borderBottom = "4rem solid rgba(8, 11, 26, 1)";
+    captureElement.style.borderBottom = "4rem solid transparent";
     captureElement.style.borderRadius = "0rem";
 }
 
