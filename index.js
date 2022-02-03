@@ -233,6 +233,8 @@ function addImage() {
         div2.setAttribute("onclick", "remove(this)")
         div.appendChild(div2);
         div.setAttribute("class", "added_image");
+        div.setAttribute("onmouseover", "activeSensor(this)")
+        div.setAttribute("onmouseout", "deactiveSensor(this)")
         div.style.backgroundImage = `url(${uploaded_image})`;
         img_container.appendChild(div);
         // uploaded_image = "";
