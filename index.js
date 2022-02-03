@@ -75,6 +75,7 @@ function goToInfoPage2() {
     }
 }
 
+
 function goToTitlePage() {
     var intro = document.getElementById('page_one');
     var info = document.getElementById('page_two');
