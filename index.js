@@ -68,7 +68,7 @@ function goToInfoPage2() {
         removeTiers();
         tier.style.visibility = 'hidden';
         info.style.visibility = 'visible';
-        if (select != null) {
+        if (selected != null) {
             selected.style.border = "1px solid rgba(255, 255, 255, 1)";
         }
         selected = null;
@@ -168,6 +168,7 @@ function goToTierPage() {
         makeTiers();
         info.style.visibility = 'hidden';
         tier.style.visibility = 'visible';
+        document.body.style.backgroundImage.value = "linear-gradient(to right, rgba(245, 99, 2,0), rgba(30, 255, 0,0.5))";
     }
     if (!y) {
         document.getElementById("warning-1").style.opacity = 0;
@@ -202,10 +203,6 @@ function backToNormalTwo() {
     }
     var captureElement = document.querySelector('#tier_list')
     captureElement.style.backgroundColor = "rgba(255, 255, 255, 0.15)";
-    captureElement.style.border = "none";
-    captureElement.style.borderTop = "3px solid rgba(30, 255, 0, 0.7)";
-    captureElement.style.borderBottom = "4rem solid transparent";
-    captureElement.style.borderRadius = "0rem";
 }
 
 const image_input = document.querySelector("#img");
@@ -289,7 +286,7 @@ function moveToTierList(el) {
 
 function moveToDragBox(el) {
     if (document.getElementById("sensor").style.height == '0px' && selected != null) {
-        el.children[el.children.length - 1].insertAdjacentElement('beforebegin', selected);
+        el.appendChild(selected);
         selected.style.border = "1px solid rgba(255, 255, 255, 1)";
         selected = null;
     }
@@ -315,8 +312,6 @@ function downloadTierList() {
 
     const captureElement = document.querySelector('#tier_list');
     captureElement.style.backgroundColor = "#080b1a";
-    captureElement.style.border = "3px solid rgba(30, 255, 0, 1)";
-    captureElement.style.borderRadius = "1rem";
 
     html2canvas(captureElement, { scale: 10 })
         .then(canvas => {
