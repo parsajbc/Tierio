@@ -1,4 +1,33 @@
 var selected = null;
+const two_tiers = [['firebrick', 'rgba(178, 34, 34, 0.5)'], ['springgreen', 'rgba(0,250,154, 0.5)']];
+const three_tiers = [['firebrick', 'rgba(178, 34, 34, 0.5)'], ['gold', 'rgba(255,215,0, 0.5)'], ['springgreen', 'rgba(0,250,154, 0.5)']];
+const four_tiers = [['firebrick', 'rgba(178, 34, 34, 0.5)'], ['tomato', 'rgba(255,99,71, 0.5)'], ['gold', 'rgba(255,215,0, 0.5)'], ['springgreen', 'rgba(0,250,154, 0.5)']];
+const five_tiers = [['firebrick', 'rgba(178, 34, 34, 0.5)'], ['tomato', 'rgba(255,99,71, 0.5)'], ['gold', 'rgba(255,215,0, 0.5)'], ['springgreen', 'rgba(0,250,154, 0.5)'], ['steelblue', 'rgba(70,130,180, 0.5)']];
+const six_tiers = [['firebrick', 'rgba(178, 34, 34, 0.5)'], ['tomato', 'rgba(255,99,71, 0.5)'], ['gold', 'rgba(255,215,0, 0.5)'], ['springgreen', 'rgba(0,250,154, 0.5)'], ['steelblue', 'rgba(70,130,180, 0.5)'], ['slateblue', 'rgba(106,90,205,0.5)']];
+const seven_tiers = [['firebrick', 'rgba(178, 34, 34, 0.5)'], ['tomato', 'rgba(255,99,71, 0.5)'], ['gold', 'rgba(255,215,0, 0.5)'], ['springgreen', 'rgba(0,250,154, 0.5)'], ['steelblue', 'rgba(70,130,180, 0.5)'], ['slateblue', 'rgba(106,90,205,0.5)'], ['purple', 'rgba(128,0,128, 0.5)']];
+var tier_colors = [];
+
+function set_tier_colors() {
+    var number_of_colors = num[index].textContent;
+    if (number_of_colors == 2) {
+        tier_colors = two_tiers;
+    }
+    if (number_of_colors == 3) {
+        tier_colors = three_tiers;
+    }
+    if (number_of_colors == 4) {
+        tier_colors = four_tiers;
+    }
+    if (number_of_colors == 5) {
+        tier_colors = five_tiers;
+    }
+    if (number_of_colors == 6) {
+        tier_colors = six_tiers;
+    }
+    if (number_of_colors == 7) {
+        tier_colors = seven_tiers;
+    }
+}
 
 var nums = document.getElementById('title_val');
 for (i = 2; i < 8; i++) {
@@ -99,12 +128,16 @@ function goToTitlePage() {
 
 function makeTiers() {
     var val = num[index].textContent;
+    set_tier_colors();
     for (i = 0; i < val; i++) {
         var div = document.createElement("fieldset");
         div.setAttribute("class", "tier");
-        div.style.backgroundColor = "rgba(30, 255, 0, " + ((1 - (1 / val) * i) / 2).toString(10) + ")";
+        // div.style.backgroundColor = "rgba(30, 255, 0, " + ((1 - (1 / val) * i) / 2).toString(10) + ")";
+        // div.style.backgroundColor = tier_colors[i];
+        div.style.backgroundImage = 'linear-gradient(to right, rgba(245, 99, 2,0),' + tier_colors[i][1] + ')';
         var leg = document.createElement("legend");
         leg.innerHTML = document.getElementsByClassName('input-container')[i].getElementsByTagName("input")[0].value;
+        leg.style.backgroundColor = tier_colors[i][0];
         div.appendChild(leg)
         div.setAttribute("onclick", "moveToTierList(this)");
         div.setAttribute("onmouseover", "onMouseTier(this)");
@@ -203,7 +236,7 @@ function backToNormalTwo() {
         col2[i].style.transition = "0.3s";
     }
     var captureElement = document.querySelector('#tier_list')
-    captureElement.style.backgroundColor = "rgba(255, 255, 255, 0.15)";
+    captureElement.style.backgroundColor = "rgb(0, 49, 26)";
 }
 
 const image_input = document.querySelector("#img");
@@ -264,14 +297,14 @@ function select(el) {
 function activeSensor(el) {
     document.getElementById("sensor").style.height = '1px';
     if (selected != el) {
-        el.style.borderColor = "green";
+        el.style.border = "3px solid rgb(0, 255, 64)";
     }
 }
 
 function deactiveSensor(el) {
     document.getElementById("sensor").style.height = '0px';
     if (el != select) {
-        el.style.borderColor = "rgba(255, 255, 255, 1)";
+        el.style.border = "1px solid rgba(255, 255, 255, 1)";
     }
 
 }
@@ -337,5 +370,5 @@ function onMouseTier(el) {
 }
 
 function offMouseTier(el) {
-    el.style.border = "1px solid rgba(30, 255, 0, 0.7)";
+    el.style.border = "1px solid rgba(255, 255, 255, 0.6)";
 }
